@@ -1,17 +1,17 @@
 pipeline {
     agent any
     environment {
-        PATH = "/opt/apache-maven-3.6.3/bin:$PATH"
+        PATH = "C:\maven\bin\:$PATH"
     }
     stages {
         stage("clone code"){
             steps{
-               git credentialsId: 'git_credentials', url: 'https://github.com/mnreddy69/jf'
+               git clone https://github.com/mnreddy69/jf.git
             }
         }
         stage("build code"){
             steps{
-              sh "mvn clean install"
+              bat "($PATH)/mvn clean install"
             }
         }
         stage("deploy"){
